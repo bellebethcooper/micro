@@ -10,7 +10,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import co.hellocode.micro.newpost.NewPostActivity
-import co.hellocode.micro.tablayout.TabAdapter
+import co.hellocode.micro.tabs.TabAdapter
 import co.hellocode.micro.utils.NEW_POST_REQUEST_CODE
 import co.hellocode.micro.utils.PREFS_FILENAME
 import co.hellocode.micro.utils.TOKEN
@@ -24,8 +24,16 @@ class MainActivity : AppCompatActivity() {
         initToolbar()
 
         // Make sure user has a token before proceeding
-        checkForUserToken()
+        val prefs = this.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+        val token: String? = prefs?.getString(TOKEN, null)
+        if (token == null) {
+            requestUserToken()
+        } else {
+            completeSetUp()
+        }
+    }
 
+    private fun completeSetUp() {
         val adapter = TabAdapter(supportFragmentManager)
         view_pager.adapter = adapter
         view_pager.offscreenPageLimit = 4
@@ -51,26 +59,23 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkForUserToken() {
+    private fun requestUserToken() {
         val prefs = this.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
-        val token: String? = prefs?.getString(TOKEN, null)
-        if (token == null) {
-            Log.i("MainActivity", "token is null")
-            val input = EditText(this)
-            val builder = AlertDialog.Builder(this)
-            builder.setView(input)
-                    .setTitle("Set your app token")
-                    .setNegativeButton("Cancel") { dialogInterface, _ ->
-                        dialogInterface.cancel()
-                    }
-                    .setPositiveButton("Save") { _, _ ->
-                        // Put token in sharedPrefs so we can use it to make network calls later
-                        prefs.edit().putString(TOKEN, input.text.toString().toLowerCase()).apply()
-                        Toast.makeText(this, "Token set, thanks.", Toast.LENGTH_SHORT).show()
-                    }
-                    .create()
-                    .show()
-        }
+        val input = EditText(this)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(input)
+                .setTitle("Set your app token")
+                .setNegativeButton("Cancel") { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                }
+                .setPositiveButton("Save") { _, _ ->
+                    // Put token in sharedPrefs so we can use it to make network calls later
+                    prefs.edit().putString(TOKEN, input.text.toString().toLowerCase()).apply()
+                    completeSetUp()
+                    Toast.makeText(this, "Token set, thanks.", Toast.LENGTH_SHORT).show()
+                }
+                .create()
+                .show()
     }
 
     private fun initToolbar() {

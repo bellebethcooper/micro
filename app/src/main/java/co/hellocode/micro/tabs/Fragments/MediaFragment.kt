@@ -1,13 +1,13 @@
-package co.hellocode.micro.tablayout.fragments
+package co.hellocode.micro.tabs.fragments
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.hellocode.micro.*
-import co.hellocode.micro.utils.inflate
+import co.hellocode.micro.tabs.recyclers.BaseRecyclerAdapter
+import co.hellocode.micro.tabs.viewholders.MediaPostViewHolder
 import kotlinx.android.synthetic.main.baselayout_timeline.view.*
 
 class MediaFragment : BaseTimelineFragment() {

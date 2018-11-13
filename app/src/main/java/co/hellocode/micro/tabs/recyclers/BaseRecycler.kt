@@ -1,7 +1,6 @@
-package co.hellocode.micro
+package co.hellocode.micro.tabs.recyclers
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import co.hellocode.micro.utils.inflate
@@ -18,7 +17,6 @@ class BaseRecyclerAdapter<T>(private val viewHolderFactory: ((parent: ViewGroup)
     : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T> {
-        //return PostViewHolder(parent, true)
         return viewHolderFactory(parent)
     }
 

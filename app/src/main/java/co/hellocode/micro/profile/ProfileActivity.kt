@@ -1,4 +1,4 @@
-package co.hellocode.micro
+package co.hellocode.micro.profile
 
 import android.content.Context
 import android.content.Intent
@@ -11,6 +11,9 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import co.hellocode.micro.R
+import co.hellocode.micro.conversation.TimelineRecyclerAdapter
+import co.hellocode.micro.models.Post
 import co.hellocode.micro.newpost.NewPostActivity
 import co.hellocode.micro.utils.NEW_POST_REQUEST_CODE
 import co.hellocode.micro.utils.PREFS_FILENAME

@@ -1,4 +1,4 @@
-package co.hellocode.micro
+package co.hellocode.micro.conversation
 
 import android.app.Activity
 import android.content.Context
@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import co.hellocode.micro.R
+import co.hellocode.micro.models.Post
 import co.hellocode.micro.newpost.NewPostActivity
 import co.hellocode.micro.utils.NEW_POST_REQUEST_CODE
 import co.hellocode.micro.utils.PREFS_FILENAME
@@ -21,7 +23,6 @@ import com.android.volley.TimeoutError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_profile_collapsing.*
 import kotlinx.android.synthetic.main.baselayout_timeline.*
 import org.json.JSONArray
 import org.json.JSONObject

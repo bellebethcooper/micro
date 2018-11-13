@@ -10,7 +10,7 @@ import android.text.TextPaint
 import android.text.style.URLSpan
 import android.util.Log
 import android.view.View
-import co.hellocode.micro.ProfileActivity
+import co.hellocode.micro.profile.ProfileActivity
 import co.hellocode.micro.R
 
 

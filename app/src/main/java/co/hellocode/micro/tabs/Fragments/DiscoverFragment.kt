@@ -1,4 +1,4 @@
-package co.hellocode.micro.tablayout.fragments
+package co.hellocode.micro.tabs.fragments
 
 class DiscoverFragment : BaseTimelineFragment() {
 

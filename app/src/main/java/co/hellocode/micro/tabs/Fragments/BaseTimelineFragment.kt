@@ -1,8 +1,9 @@
-package co.hellocode.micro.tablayout.fragments
+package co.hellocode.micro.tabs.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -11,10 +12,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.hellocode.micro.*
+import co.hellocode.micro.models.Post
+import co.hellocode.micro.tabs.recyclers.BaseRecyclerAdapter
+import co.hellocode.micro.tabs.viewholders.PostViewHolder
 import co.hellocode.micro.utils.PREFS_FILENAME
 import co.hellocode.micro.utils.TOKEN
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
+import com.android.volley.TimeoutError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.baselayout_timeline.view.*
@@ -86,7 +91,12 @@ open class BaseTimelineFragment: Fragment() {
                     if (error.networkResponse != null && error.networkResponse.data != null) {
                         Log.i("BaseTimelineFrag", "error is: ${error.networkResponse} msg: ${error.networkResponse.data.toString()}")
                     }
-                    this.refresh.isRefreshing = false
+                    if (error is TimeoutError) {
+                        Snackbar.make(this.refresh, "Request timed out; trying again", Snackbar.LENGTH_SHORT)
+                        this.getTimeline()
+                    } else {
+                        this.refresh.isRefreshing = false
+                    }
 
                     // TODO: Handle error
                 }) {

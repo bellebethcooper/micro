@@ -58,8 +58,17 @@
         </android.support.design.widget.TextInputLayout>
 
         <RelativeLayout
+            android:id="@+id/buttons_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/image_previews_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            </LinearLayout>
 
             <ImageButton
                 android:id="@+id/photoButton"

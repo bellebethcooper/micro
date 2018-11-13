@@ -1,4 +1,4 @@
-package co.hellocode.micro
+package co.hellocode.micro.tabs.viewholders
 
 import android.content.Intent
 import android.text.format.DateUtils
@@ -8,12 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import co.hellocode.micro.conversation.ConversationActivity
+import co.hellocode.micro.models.Post
+import co.hellocode.micro.profile.ProfileActivity
+import co.hellocode.micro.R
 import co.hellocode.micro.newpost.NewPostActivity
-import co.hellocode.micro.utils.inflate
+import co.hellocode.micro.tabs.recyclers.BaseViewHolder
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.layout_post_image.view.*
-import kotlinx.android.synthetic.main.timeline_item.view.*
 import kotlinx.android.synthetic.main.timeline_media_item.view.*
 
 class MediaPostViewHolder(parent: ViewGroup, private var canShowConversations: Boolean)
